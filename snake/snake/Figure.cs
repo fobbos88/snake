@@ -12,6 +12,7 @@ namespace snake
 
         public void Drow()
         {
+
             foreach (Point p in pList)
             {
                 p.Draw();
