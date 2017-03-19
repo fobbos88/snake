@@ -13,14 +13,14 @@ namespace snake
         {
             Console.SetBufferSize(80, 25);
 
-            Point p = new Point(4, 5, '*');
+            Point TailStart = new Point(4, 5, '*');
             
 
 
-            HorisontalLine upLine = new HorisontalLine(0, 78, 0, '+' );
-            HorisontalLine downLine = new HorisontalLine(0, 78, 24, '+');
-            VerticalLine leftLine = new VerticalLine(0, 24, 0, '+');
-            VerticalLine rightLine = new VerticalLine(0, 24, 78, '+');
+            HorisontalLine upLine = new HorisontalLine(0, 78, 0, '-' );
+            HorisontalLine downLine = new HorisontalLine(0, 78, 24, '-');
+            VerticalLine leftLine = new VerticalLine(0, 24, 0, '|');
+            VerticalLine rightLine = new VerticalLine(0, 24, 78, '|');
             
             upLine.Drow();
             downLine.Drow();
@@ -28,21 +28,20 @@ namespace snake
             rightLine.Drow();
 
 
-            Snake snake = new Snake(p, 4, Direction.RIGHT);
+            Snake snake = new Snake(TailStart, 4, Direction.RIGHT);
             snake.Drow();
 
-
-
-            snake.Move();
-            Thread.Sleep(300);
-          
-
-
-
-
-
-
-            Console.ReadLine();
+            while (true)
+            {
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    snake.HandleKey(key.Key);                   
+                }
+                snake.Move();
+                Thread.Sleep(100);
+            }
+            
         }
         
     }
